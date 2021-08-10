@@ -1,15 +1,20 @@
 import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_app/utils/logger_utils.dart';
+import 'package:fun_app/utils/storage_manager.dart';
 
-import '';
+import 'logger_utils.dart';
 
+///处理所有类型的错误
 class AppErrorHandle {
-  static void runAppWidge(Widget app) {
-    runZonedGuarded(() {
+  static runAppWidge(Widget app) {
+    runZonedGuarded(() async {
       WidgetsFlutterBinding.ensureInitialized();
+      await StorageManager.init();
       FlutterError.onError = (FlutterErrorDetails details) {
-        _handleError("Flutter导致的错误", details.exception, details.stack);
+        _handleError("Flutter 捕获的错误", details.exception, details.stack);
       };
       runApp(app);
     }, (Object error, StackTrace stack) {
@@ -18,13 +23,16 @@ class AppErrorHandle {
   }
 
   static void _handleError(String message, Object? error, StackTrace? stack) {
+    if (kReleaseMode) {
+      exit(0);
+    }
     LoggerUtils.e(message, error, stack);
     ErrorWidget.builder = (FlutterErrorDetails details) {
       return Container(
         color: Colors.green,
         child: Text(
           'message:$message exception:$error stack:$stack',
-          style: TextStyle(color: Colors.red),
+          style: TextStyle(color: Colors.red, fontSize: 15),
         ),
       );
     };

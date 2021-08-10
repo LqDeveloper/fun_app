@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+
+class NoAnimRouteBuilder extends PageRouteBuilder {
+  final Widget page;
+
+  NoAnimRouteBuilder(this.page)
+      : super(
+            opaque: false,
+            pageBuilder: (context, animation, secondaryANimation) => page,
+            transitionDuration: Duration(microseconds: 0),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) => child);
+}
