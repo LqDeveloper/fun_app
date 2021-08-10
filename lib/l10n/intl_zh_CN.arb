@@ -1,3 +1,4 @@
 {
-  "@@local": "zh_CN"
+  "@@locale": "zh_CN",
+  "autoBySystem": "跟随系统"
 }

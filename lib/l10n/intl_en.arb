@@ -1,3 +1,4 @@
 {
-  "@@local": "en"
+  "@@locale": "en",
+  "autoBySystem": "Auto"
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_app/extensions/context_extensions.dart';
-import 'storage_manager.dart';
+import '../utils/storage_manager.dart';
 
 class ThemeModel with ChangeNotifier {
-  static const _themeColorIndex = 'ThemeColorIndex';
-  static const _themeDarkMode = 'ThemeDarkMode';
-  static const _themeFontIndex = "ThemeFontIndex";
+  static const _themeColorIndexKey = 'ThemeColorIndex';
+  static const _themeDarkModeKey = 'ThemeDarkMode';
+  static const _themeFontIndexKey = "ThemeFontIndex";
   static const _fontTypeList = ['system', 'iconfont', 'kuaile'];
 
   ///当前是否是暗黑模式
@@ -20,38 +20,37 @@ class ThemeModel with ChangeNotifier {
 
   ThemeModel() {
     _isDarkMode =
-        StorageManager.sharedPreferences.getBool(ThemeModel._themeDarkMode) ??
-            false;
+        StorageManager.sharedPreferences.getBool(_themeDarkModeKey) ?? false;
     _themeColor = Colors.primaries[
-        StorageManager.sharedPreferences.getInt(ThemeModel._themeColorIndex) ??
-            0];
+        StorageManager.sharedPreferences.getInt(_themeColorIndexKey) ?? 0];
     _fontIndex =
-        StorageManager.sharedPreferences.getInt(ThemeModel._themeFontIndex) ??
-            0;
+        StorageManager.sharedPreferences.getInt(_themeFontIndexKey) ?? 0;
   }
 
   void switchBrightnessMode(Brightness brightness) {
     _isDarkMode = brightness == Brightness.dark;
     notifyListeners();
     StorageManager.sharedPreferences
-        .setBool(ThemeModel._themeDarkMode, brightness == Brightness.dark);
+        .setBool(_themeDarkModeKey, brightness == Brightness.dark);
   }
 
   void switchThemeColor(MaterialColor color) {
     _themeColor = color;
     notifyListeners();
     var index = Colors.primaries.indexOf(color);
-    StorageManager.sharedPreferences.setInt(ThemeModel._themeColorIndex, index);
+    StorageManager.sharedPreferences.setInt(_themeColorIndexKey, index);
   }
 
   void switchFont(int index) {
     _fontIndex = index;
     notifyListeners();
-    StorageManager.sharedPreferences.setInt(ThemeModel._themeFontIndex, index);
+    StorageManager.sharedPreferences.setInt(_themeFontIndexKey, index);
   }
 
-  ThemeData themeData(BuildContext context, {bool followSystem = false,bool platformDarkMode: false}) {
-    var isDark = followSystem ? context.isDarkMode : (_isDarkMode || platformDarkMode);
+  ThemeData themeData(BuildContext context,
+      {bool followSystem = false, bool platformDarkMode: false}) {
+    var isDark =
+        followSystem ? context.isDarkMode : (_isDarkMode || platformDarkMode);
     var themeColor = isDark ? _themeColor[500] : _themeColor;
     var brightness = isDark ? Brightness.dark : Brightness.light;
     var themeData = ThemeData(
