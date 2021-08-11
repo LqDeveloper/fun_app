@@ -59,6 +59,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Skip`
+  String get splashSkip {
+    return Intl.message(
+      'Skip',
+      name: 'splashSkip',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

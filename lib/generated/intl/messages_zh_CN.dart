@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "autoBySystem": MessageLookupByLibrary.simpleMessage("跟随系统")
+        "autoBySystem": MessageLookupByLibrary.simpleMessage("跟随系统"),
+        "splashSkip": MessageLookupByLibrary.simpleMessage("跳过")
       };
 }

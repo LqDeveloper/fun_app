@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
+import 'package:fun_app/generated/l10n.dart';
+import 'package:fun_app/utils/app_route.dart';
 
 class SplashWidget extends StatefulWidget {
   @override
@@ -56,7 +57,7 @@ class _SplashState extends State<SplashWidget> with TickerProviderStateMixin {
                             setState(() {
                               _visible = false;
                             });
-                            showToast("倒计时结束了");
+                            Navigator.of(context).pushReplacementNamed(AppRouterUrl.main);
                           }),
                     )),
               )
@@ -122,7 +123,7 @@ class CountDownAnimated extends AnimatedWidget {
     var value = animation.value;
     return TextButton(
       child: Text(
-        value == 0 ? '' : '$value' + '跳过',
+        value == 0 ? '' : '$value' + S.of(context).splashSkip,
         style: TextStyle(color: Colors.white, fontSize: 15),
       ),
       onPressed: onEnd,
