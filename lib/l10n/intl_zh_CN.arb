@@ -1,4 +1,5 @@
 {
   "@@locale": "zh_CN",
-  "autoBySystem": "跟随系统"
+  "autoBySystem": "跟随系统",
+  "splashSkip": "跳过"
 }

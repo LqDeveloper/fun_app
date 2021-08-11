@@ -30,9 +30,11 @@ class AppErrorHandle {
     ErrorWidget.builder = (FlutterErrorDetails details) {
       return Container(
         color: Colors.green,
-        child: Text(
-          'message:$message exception:$error stack:$stack',
-          style: TextStyle(color: Colors.red, fontSize: 15),
+        child: SingleChildScrollView(
+          child: Text(
+            'message:$message exception:$error stack:$stack',
+            style: TextStyle(color: Colors.red, fontSize: 15),
+          ),
         ),
       );
     };

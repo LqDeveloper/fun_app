@@ -10,11 +10,11 @@ class LocaleModel with ChangeNotifier {
   int get localIndex => _localIndex;
 
   Locale? get locale {
-    if (_localIndex >= _localList.length && _localList.length < 0) {
-      return null;
+    if (_localIndex > 0) {
+      var value = _localList[_localIndex].split('-');
+      return Locale(value[0], value.length == 2 ? value[1] : '');
     }
-    var value = _localList[_localIndex].split('-');
-    return Locale(value[0], value.length == 2 ? value[1] : '');
+    return null;
   }
 
   LocaleModel() {

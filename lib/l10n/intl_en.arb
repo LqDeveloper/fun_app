@@ -1,4 +1,5 @@
 {
   "@@locale": "en",
-  "autoBySystem": "Auto"
+  "autoBySystem": "Auto",
+  "splashSkip": "Skip"
 }

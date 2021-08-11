@@ -2,19 +2,15 @@ import 'package:fun_app/provider_model/locale_model.dart';
 import 'package:fun_app/provider_model/theme_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/single_child_widget.dart';
 
 class ProviderManager {
-  static List<ChangeNotifierProvider> get providers {
-    return [_themeProvider,_localeProvider];
-  }
+  static List<SingleChildWidget> providers = [...independentServices];
 
-  static ChangeNotifierProvider get _themeProvider {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => ThemeModel());
-  }
-
-  static ChangeNotifierProvider get _localeProvider {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => LocaleModel());
-  }
+  static List<SingleChildWidget> independentServices = [
+    ChangeNotifierProvider<ThemeModel>(
+        create: (BuildContext context) => ThemeModel()),
+    ChangeNotifierProvider<LocaleModel>(
+        create: (BuildContext context) => LocaleModel())
+  ];
 }

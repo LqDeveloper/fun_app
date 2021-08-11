@@ -1,7 +1,14 @@
 import 'package:logger/logger.dart';
 
 class LoggerUtils {
-  static Logger _logger = Logger(printer: PrettyPrinter(methodCount: 0));
+  static Logger _logger = Logger(
+      printer: PrettyPrinter(
+          methodCount: 2,
+          errorMethodCount: 8,
+          lineLength: 120,
+          colors: true,
+          printEmojis: true,
+          printTime: false));
 
   static void v(dynamic message, [dynamic error, StackTrace? stackTrace]) {
     _logger.v(message, error, stackTrace);

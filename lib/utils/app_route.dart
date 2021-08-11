@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_app/ui/main_widget.dart';
 import 'package:fun_app/ui/splash_widget.dart';
-import 'package:fun_app/utils/page_route_anim.dart';
+import 'package:fun_app/ui_config/page_route_anim.dart';
 
 class AppRouterUrl {
   static const main = 'MainView';
