@@ -1,3 +1,4 @@
+import 'package:fun_app/provider_model/bottom_nav_model.dart';
 import 'package:fun_app/provider_model/locale_model.dart';
 import 'package:fun_app/provider_model/theme_model.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ class ProviderManager {
     ChangeNotifierProvider<ThemeModel>(
         create: (BuildContext context) => ThemeModel()),
     ChangeNotifierProvider<LocaleModel>(
-        create: (BuildContext context) => LocaleModel())
+        create: (BuildContext context) => LocaleModel()),
+    ChangeNotifierProvider(create: (BuildContext context) => BottomNavModel())
   ];
 }

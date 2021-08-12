@@ -1,5 +1,10 @@
 {
   "@@locale": "zh_CN",
   "autoBySystem": "跟随系统",
-  "splashSkip": "跳过"
+  "splashSkip": "跳过",
+  "tabHome": "首页",
+  "tabProject": "项目",
+  "wechatAccount": "公众号",
+  "tabStructure": "体系",
+  "tabUser": "我的"
 }

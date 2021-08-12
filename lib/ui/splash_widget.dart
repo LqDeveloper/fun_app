@@ -11,6 +11,8 @@ class SplashWidget extends StatefulWidget {
 
 class _SplashState extends State<SplashWidget> with TickerProviderStateMixin {
   late AnimationController _countDownController;
+  late Animation<double> _animation;
+  late AnimationController _logoController;
   var _visible = true;
 
   @override
@@ -18,12 +20,25 @@ class _SplashState extends State<SplashWidget> with TickerProviderStateMixin {
     _countDownController =
         AnimationController(vsync: this, duration: Duration(seconds: 4));
     _countDownController.forward();
+
+    _logoController = AnimationController(
+        duration: Duration(milliseconds: 1500), vsync: this);
+    _animation = Tween(begin: 0.0, end: 0.7).animate(_logoController);
+    _animation.addStatusListener((status) {
+      if (status == AnimationStatus.dismissed) {
+        _logoController.forward();
+      } else if (status == AnimationStatus.completed) {
+        _logoController.reverse();
+      }
+    });
+    _logoController.forward();
     super.initState();
   }
 
   @override
   void dispose() {
     _countDownController.dispose();
+    _logoController.dispose();
     super.dispose();
   }
 
@@ -38,7 +53,7 @@ class _SplashState extends State<SplashWidget> with TickerProviderStateMixin {
             fit: StackFit.expand,
             children: [
               Image.asset('assets/images/splash_bg.png', fit: BoxFit.fill),
-              AnimatedLogo(),
+              AnimatedLogo(animation: _animation),
               Visibility(
                 visible: _visible,
                 child: Align(
@@ -57,7 +72,8 @@ class _SplashState extends State<SplashWidget> with TickerProviderStateMixin {
                             setState(() {
                               _visible = false;
                             });
-                            Navigator.of(context).pushReplacementNamed(AppRouterUrl.main);
+                            Navigator.of(context)
+                                .pushReplacementNamed(AppRouterUrl.main);
                           }),
                     )),
               )
@@ -67,10 +83,22 @@ class _SplashState extends State<SplashWidget> with TickerProviderStateMixin {
   }
 }
 
-class AnimatedLogo extends StatefulWidget {
+class AnimatedLogo extends AnimatedWidget {
+  final Animation<double> animation;
+
+  AnimatedLogo({required this.animation}) : super(listenable: animation);
+
   @override
-  State<StatefulWidget> createState() {
-    return _AnimatedLogoState();
+  Widget build(BuildContext context) {
+    return AnimatedAlign(
+        alignment: Alignment(0, animation.value),
+        curve: Curves.bounceOut,
+        child: Image.asset(
+          "assets/images/splash_flutter.png",
+          width: 280,
+          height: 120,
+        ),
+        duration: Duration(milliseconds: 10));
   }
 }
 
@@ -123,7 +151,7 @@ class CountDownAnimated extends AnimatedWidget {
     var value = animation.value;
     return TextButton(
       child: Text(
-        value == 0 ? '' : '$value' + S.of(context).splashSkip,
+        value == 0 ? '' : '$value ${S.of(context).splashSkip}',
         style: TextStyle(color: Colors.white, fontSize: 15),
       ),
       onPressed: onEnd,

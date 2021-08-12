@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fun_app/generated/l10n.dart';
+import 'package:fun_app/provider_model/bottom_nav_model.dart';
 import 'package:fun_app/provider_model/locale_model.dart';
 import 'package:fun_app/ui_config/fun_refresh_configuration.dart';
 import 'package:fun_app/ui_config/fun_toast.dart';
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
     return FunToast(
         child: MultiProvider(
       providers: ProviderManager.providers,
-      child: Consumer2<ThemeModel, LocaleModel>(
-        builder: (context, themeModel, localModel, child) {
+      child: Consumer3<ThemeModel, LocaleModel, BottomNavModel>(
+        builder: (context, themeModel, localModel, _, child) {
           return FunRefreshConfiguration(
               child: MaterialApp(
                   debugShowCheckedModeBanner: false,

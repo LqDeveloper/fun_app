@@ -22,6 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "autoBySystem": MessageLookupByLibrary.simpleMessage("Auto"),
-        "splashSkip": MessageLookupByLibrary.simpleMessage("Skip")
+        "splashSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "tabHome": MessageLookupByLibrary.simpleMessage("Home"),
+        "tabProject": MessageLookupByLibrary.simpleMessage("Project"),
+        "tabStructure": MessageLookupByLibrary.simpleMessage("Structure"),
+        "tabUser": MessageLookupByLibrary.simpleMessage("Me"),
+        "wechatAccount": MessageLookupByLibrary.simpleMessage("Wechat")
       };
 }

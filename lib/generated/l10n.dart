@@ -69,6 +69,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get tabHome {
+    return Intl.message(
+      'Home',
+      name: 'tabHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project`
+  String get tabProject {
+    return Intl.message(
+      'Project',
+      name: 'tabProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wechat`
+  String get wechatAccount {
+    return Intl.message(
+      'Wechat',
+      name: 'wechatAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Structure`
+  String get tabStructure {
+    return Intl.message(
+      'Structure',
+      name: 'tabStructure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Me`
+  String get tabUser {
+    return Intl.message(
+      'Me',
+      name: 'tabUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
