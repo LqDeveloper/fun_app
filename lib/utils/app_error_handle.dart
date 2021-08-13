@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fun_app/utils/dio_manager.dart';
 import 'package:fun_app/utils/storage_manager.dart';
 
 import 'logger_utils.dart';
@@ -14,6 +15,7 @@ class AppErrorHandle {
     runZonedGuarded(() async {
       WidgetsFlutterBinding.ensureInitialized();
       await StorageManager.init();
+      await DioManager.instance.init();
       FlutterError.onError = (FlutterErrorDetails details) {
         _handleError("Flutter 捕获的错误", details.exception, details.stack);
       };
